@@ -5,6 +5,12 @@ import crypto from "crypto";
 import cloudinary from "../../utils/cloudinary";
 import { generateVerificationCode } from "../../utils/generateVerificationCode";
 import { generateToken } from "../../utils/generateToken";
+import {
+  sendPasswordResetEmail,
+  sendResetSuccessEmail,
+  sendVerificationEmail,
+  sendWelcomeEmail,
+} from "../../mailtrap/email";
 
 const signup = async (req: Request, res: Response) => {
   try {
@@ -33,8 +39,9 @@ const signup = async (req: Request, res: Response) => {
       verificationToken,
       verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000,
     });
-    generateToken(res,user)
-    // await sendVerificationEmail (email, verificationToken)
+    generateToken(res, user);
+    //sending email verification
+    await sendVerificationEmail(email, verificationToken);
 
     const userWithoutPassword = await User.findOne({ email }).select(
       "-password"
@@ -74,7 +81,7 @@ const login = async (req: Request, res: Response) => {
       });
     }
 
-    // generateToken(res.user);
+    generateToken(res, user);
     user.lastLogin = new Date();
     await user.save();
 
@@ -118,7 +125,7 @@ const VerifyEmail = async (req: Request, res: Response) => {
     await user.save();
 
     //send welcome email :
-    // await sendWelcomeEmail(user.email, user.fullName)
+    await sendWelcomeEmail(user.email, user.fullName);
 
     return res.status(200).json({
       success: true,
@@ -169,7 +176,10 @@ const forgetPassword = async (req: Request, res: Response) => {
     await user.save();
 
     //send email :
-    // await sendPasswordResetEmail(user.email, `${process.env.FRONTEND_URL}/resetPassword/${token}`);
+    await sendPasswordResetEmail(
+      user.email,
+      `${process.env.FRONTEND_URL}/resetPassword/${resetToken}`
+    );
 
     return res.status(200).json({
       success: true,
@@ -210,7 +220,7 @@ const resetPassword = async (req: Request, res: Response) => {
     await user.save();
 
     //send success reset email
-    // await sendResetSuccessEmail (user.email)
+    await sendResetSuccessEmail (user.email)
 
     return res.status(200).json({
       success: true,
