@@ -1,10 +1,9 @@
-import express, { Request, Response } from "express"
+import express, { Request, Response } from "express";
 
-const app = express()
+const app = express();
 
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello World! The food server is running");
+});
 
-app.get("/", (req : Request, res:Response) => {
-    res.send("hello............. Banhgsgh")
-})
-
-export default app
+export default app;
