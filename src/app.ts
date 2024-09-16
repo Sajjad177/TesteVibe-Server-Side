@@ -5,6 +5,7 @@ import cors from "cors";
 import { UserRouters } from "./modules/user/user.route";
 import { RestaurantRouter } from "./modules/restaurant/restaurant.route";
 import { menuRouter } from "./modules/menu/menu.route";
+import { OrderRoute } from "./modules/order/order.route";
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(cors(corsOptions));
 app.use("/api/v1/user", UserRouters);
 app.use("/api/v1/restaurant", RestaurantRouter);
 app.use("/api/v1/menu", menuRouter);
+app.use("/api/v1/order", OrderRoute);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World! The food server is running");
