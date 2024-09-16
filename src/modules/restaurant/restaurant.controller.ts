@@ -1,4 +1,3 @@
-import { path } from "path";
 import { Request, Response } from "express";
 import uploadImageOnCloudinary from "../../utils/imageUpload";
 import { Order } from "../order/order.model";
@@ -6,8 +5,7 @@ import { Restaurant } from "./restaurant.model";
 
 const createRestaurant = async (req: Request, res: Response) => {
   try {
-    const { restaurantName, city, country, price, deliveryTime, cuisines } =
-      req.body;
+    const { restaurantName, city, country, deliveryTime, cuisines } = req.body;
     const file = req.file;
     // checking user have any restaurant
     const restaurant = await Restaurant.findOne({ user: req.id });
