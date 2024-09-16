@@ -1,8 +1,9 @@
 import express, { Request, Response } from "express";
-import { UserRouters } from "./modules/user/user.route";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { UserRouters } from "./modules/user/user.route";
+import { RestaurantRouter } from "./modules/restaurant/restaurant.route";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(cors(corsOptions));
 
 //router
 app.use("/api/v1/user", UserRouters);
+app.use("/api/v1/restaurant", RestaurantRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World! The food server is running");

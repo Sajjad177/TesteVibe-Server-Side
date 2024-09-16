@@ -54,7 +54,7 @@ const signup = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Internal server error",
     });
@@ -96,7 +96,7 @@ const login = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Internal server error",
     });
@@ -134,7 +134,7 @@ const VerifyEmail = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Internal server error",
     });
@@ -149,7 +149,7 @@ const logout = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Internal server error",
     });
@@ -188,7 +188,7 @@ const forgetPassword = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Internal server error",
     });
@@ -220,7 +220,7 @@ const resetPassword = async (req: Request, res: Response) => {
     await user.save();
 
     //send success reset email
-    await sendResetSuccessEmail (user.email)
+    await sendResetSuccessEmail(user.email);
 
     return res.status(200).json({
       success: true,
@@ -228,7 +228,7 @@ const resetPassword = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Internal server error",
     });
@@ -252,7 +252,7 @@ const checkAuth = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Internal server error",
     });
@@ -280,7 +280,7 @@ const updateProfiles = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Internal server error",
     });
