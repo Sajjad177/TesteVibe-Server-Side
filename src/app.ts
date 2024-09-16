@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { UserRouters } from "./modules/user/user.route";
 import { RestaurantRouter } from "./modules/restaurant/restaurant.route";
+import { menuRouter } from "./modules/menu/menu.route";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(cors(corsOptions));
 //router
 app.use("/api/v1/user", UserRouters);
 app.use("/api/v1/restaurant", RestaurantRouter);
+app.use("/api/v1/menu", menuRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World! The food server is running");
