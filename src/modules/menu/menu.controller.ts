@@ -3,6 +3,16 @@ import uploadImageOnCloudinary from "../../utils/imageUpload";
 import { Menu } from "./menu.model";
 import { Restaurant } from "../restaurant/restaurant.model";
 import mongoose from "mongoose";
+// import { IMenuDocument } from "./menu.interface";
+
+// Define a type for the menu payload (incoming data)
+// type IMenuPayload = {
+//   name: string;
+//   description: string;
+//   price: number;
+//   image: string;
+// };
+
 
 const addMenu = async (req: Request, res: Response) => {
   try {
@@ -18,10 +28,10 @@ const addMenu = async (req: Request, res: Response) => {
     // upload image in cloudinary
     const imageUrl = await uploadImageOnCloudinary(file as Express.Multer.File);
 
-    const menu = await Menu.create({
+    const menu : any = await Menu.create({
       name,
       description,
-      price,
+      price, 
       image: imageUrl,
     });
 
@@ -29,6 +39,7 @@ const addMenu = async (req: Request, res: Response) => {
 
     if (restaurant) {
       (restaurant.menus as mongoose.Schema.Types.ObjectId[]).push(menu._id);
+      // restaurant.menus.push(menu._id);
       await restaurant.save();
     }
 

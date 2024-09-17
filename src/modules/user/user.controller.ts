@@ -106,9 +106,10 @@ const login = async (req: Request, res: Response) => {
 const VerifyEmail = async (req: Request, res: Response) => {
   try {
     const { verificationCode } = req.body;
+
     const user = await User.findOne({
       verificationToken: verificationCode,
-      verificationTokenExpiresAt: { $g: Date.now() },
+      verificationTokenExpiresAt: { $gt: Date.now() },
     }).select("-password");
 
     //Checking user :
@@ -265,7 +266,7 @@ const updateProfiles = async (req: Request, res: Response) => {
     const { fullName, email, address, city, country, profilePic } = req.body;
 
     // upload image on cloudinary
-    let cloudResponse = any;
+    let cloudResponse:  any;
     cloudResponse = await cloudinary.uploader.upload(profilePic);
     const updateData = { fullName, email, address, city, country, profilePic };
 

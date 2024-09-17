@@ -1,4 +1,7 @@
-export const htmlContent: string = `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.generateResetSuccessEmailHtml = exports.generatePasswordResetEmailHtml = exports.generateWelcomeEmailHtml = exports.htmlContent = void 0;
+exports.htmlContent = `
     <!DOCTYPE html>
     <html>
     <head>
@@ -75,9 +78,8 @@ export const htmlContent: string = `
     </body>
     </html>
     `;
-
-export const generateWelcomeEmailHtml = (name: string) => {
-  return `
+const generateWelcomeEmailHtml = (name) => {
+    return `
           <html>
             <head>
               <style>
@@ -114,26 +116,26 @@ export const generateWelcomeEmailHtml = (name: string) => {
             <body>
               <div class="email-container">
                 <div class="email-header">
-                  <h1>Welcome to TasteVibe!</h1>
+                  <h1>Welcome to Patel Food!</h1>
                 </div>
                 <div class="email-body">
                   <p>Hi ${name},</p>
                   <p>Congratulations! Your email has been successfully verified.</p>
-                  <p>We are excited to have you on board at TasteVibe. Explore our platform and enjoy our services.</p>
+                  <p>We are excited to have you on board at Patel Food. Explore our platform and enjoy our services.</p>
                   <p>If you have any questions or need assistance, feel free to reach out to us.</p>
-                  <p>Best Regards,<br/>The TasteVibe Team</p>
+                  <p>Best Regards,<br/>The Patel Food Team</p>
                 </div>
                 <div class="email-footer">
-                  <p>&copy; 2024 TasteVibe. All rights reserved.</p>
+                  <p>&copy; 2024 Patel Food. All rights reserved.</p>
                 </div>
               </div>
             </body>
           </html>
         `;
 };
-
-export const generatePasswordResetEmailHtml = (resetURL: string) => {
-  return `
+exports.generateWelcomeEmailHtml = generateWelcomeEmailHtml;
+const generatePasswordResetEmailHtml = (resetURL) => {
+    return `
       <html>
         <head>
           <style>
@@ -187,19 +189,19 @@ export const generatePasswordResetEmailHtml = (resetURL: string) => {
               <p>We received a request to reset your password. Click the button below to reset it.</p>
               <a href="${resetURL}" class="button">Reset Password</a>
               <p>If you didn't request a password reset, please ignore this email.</p>
-              <p>Thank you,<br/>The TasteVibe Team</p>
+              <p>Thank you,<br/>The Patel Food Team</p>
             </div>
             <div class="email-footer">
-              <p>&copy; 2024 TasteVibe. All rights reserved.</p>
+              <p>&copy; 2024 Patel Food. All rights reserved.</p>
             </div>
           </div>
         </body>
       </html>
     `;
 };
-
-export const generateResetSuccessEmailHtml = () => {
-  return `
+exports.generatePasswordResetEmailHtml = generatePasswordResetEmailHtml;
+const generateResetSuccessEmailHtml = () => {
+    return `
       <html>
         <head>
           <style>
@@ -242,13 +244,14 @@ export const generateResetSuccessEmailHtml = () => {
               <p>Hi,</p>
               <p>Your password has been successfully reset. You can now log in with your new password.</p>
               <p>If you did not request this change, please contact our support team immediately.</p>
-              <p>Thank you,<br/>The TasteVibe Team</p>
+              <p>Thank you,<br/>The Patel Food Team</p>
             </div>
             <div class="email-footer">
-              <p>&copy; 2024 TasteVibe. All rights reserved.</p>
+              <p>&copy; 2024 Patel Food. All rights reserved.</p>
             </div>
           </div>
         </body>
       </html>
     `;
 };
+exports.generateResetSuccessEmailHtml = generateResetSuccessEmailHtml;

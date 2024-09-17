@@ -9,18 +9,20 @@ import { OrderRoute } from "./modules/order/order.route";
 
 const app = express();
 
+//corse setup :
+const corsOptions = {
+  // origin: "http://localhost:8000",
+  origin: "http://localhost:5173",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
 // setup parser
 app.use(bodyParser.json({ limit: "10mb" })); //added limit data -> 10mb
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(express.json());
 app.use(cookieParser());
-
-//corse setup :
-const corsOptions = {
-  origin: "http://localhost:8000",
-  credentials: true,
-};
-app.use(cors(corsOptions));
 
 //router
 app.use("/api/v1/user", UserRouters);
