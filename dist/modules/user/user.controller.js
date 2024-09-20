@@ -104,7 +104,7 @@ const VerifyEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const { verificationCode } = req.body;
         const user = yield user_model_1.User.findOne({
             verificationToken: verificationCode,
-            verificationTokenExpiresAt: { $g: Date.now() },
+            verificationTokenExpiresAt: { $gt: Date.now() },
         }).select("-password");
         //Checking user :
         if (!user) {
